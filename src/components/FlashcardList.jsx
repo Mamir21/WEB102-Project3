@@ -4,11 +4,13 @@ import { Button, Container, Typography, Box, GlobalStyles, TextField } from '@mu
 
 export const FlashcardList = () => {
   const flashcards = [
-    { question: 'What is React?', answer: 'A JavaScript library for building UIs.' },
-    { question: 'What is TypeScript?', answer: 'A typed superset of JavaScript.' },
-    { question: 'What is JSX?', answer: 'A syntax extension for JavaScript used in React.' },
-    // Add more flashcards
-  ];
+    { question: 'What is React?', answer: 'UI library' },
+    { question: 'What is TypeScript?', answer: 'Typed JavaScript' },
+    { question: 'What is JSX?', answer: 'JavaScript syntax' },
+    { question: 'What is a Component in React?', answer: 'UI block' },
+    { question: 'What is State in React?', answer: 'Dynamic data' },
+    { question: 'What is a Prop in React?', answer: 'Passed data' },
+  ]
 
   const [currentCard, setCurrentCard] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -17,36 +19,34 @@ export const FlashcardList = () => {
   const [correctStreak, setCorrectStreak] = useState(0);
   const [longestStreak, setLongestStreak] = useState(0);
 
-  // Shuffle the cards
   const handleShuffle = () => {
     flashcards.sort(() => Math.random() - 0.5);
     setCurrentCard(0);
     setIsFlipped(false);
     setFeedback(null);
     setUserGuess('');
-  };
+  }
 
   const handleNextCard = () => {
     setCurrentCard((prevCard) => (prevCard + 1) % flashcards.length);
     setIsFlipped(false);
     setFeedback(null);
     setUserGuess('');
-  };
+  }
 
   const handlePreviousCard = () => {
     setCurrentCard((prevCard) =>
       prevCard === 0 ? flashcards.length - 1 : prevCard - 1
-    );
+    )
     setIsFlipped(false);
     setFeedback(null);
     setUserGuess('');
-  };
+  }
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
-  };
+  }
 
-  // Handle user answer submission
   const handleSubmitAnswer = () => {
     const correctAnswer = flashcards[currentCard].answer.toLowerCase();
     if (userGuess.toLowerCase() === correctAnswer) {
@@ -55,9 +55,9 @@ export const FlashcardList = () => {
       setLongestStreak(Math.max(longestStreak, correctStreak + 1));
     } else {
       setFeedback('Incorrect.');
-      setCorrectStreak(0); // Reset streak on wrong answer
+      setCorrectStreak(0);
     }
-  };
+  }
 
   return (
     <>
@@ -105,7 +105,6 @@ export const FlashcardList = () => {
           />
         </Box>
 
-        {/* User input and feedback section */}
         <Box sx={{ width: { xs: '70%', sm: '70%', md: '60%', lg: '50%' }, marginBottom: '20px', marginTop: '20px' }}>
           <TextField
             fullWidth
@@ -167,5 +166,5 @@ export const FlashcardList = () => {
         </Box>
       </Container>
     </>
-  );
-};
+  )
+}
