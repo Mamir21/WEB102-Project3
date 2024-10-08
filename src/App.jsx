@@ -1,16 +1,14 @@
-import { useState } from 'react'
-import './App.css'
+import React from 'react';
+import { FlashcardList } from './components/FlashcardList';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        YURR
-      </div>
-    </>
+    <div>
+      <main>
+        <FlashcardList />
+      </main>
+    </div>
   )
 }
 
-export default App
+export default App;
